@@ -36,14 +36,14 @@ const removeTask = (e) => {
     console.log(toDoArray);
 }
 
-const searchTask = (e) => {
-    const searchText = e.target.value.toLowerCase()
-    let tasks = [...listTasks];
-    tasks = tasks.filter(li => li.textContent.toLowerCase().includes(searchText)) //Metoda includes() ustala czy dana tablica posiada szukany element, zwracając true lub false.
-    ul.textContent = '';
-    tasks.forEach( li => ul.appendChild(li))
-}
+// const searchTask = (e) => {
+//     const searchText = e.target.value.toLowerCase()
+//     let tasks = [...listTasks];
+//     tasks = tasks.filter(li => li.textContent.toLowerCase().includes(searchText)) //Metoda includes() ustala czy dana tablica posiada szukany element, zwracając true lub false.
+//     ul.textContent = '';
+//     tasks.forEach( li => ul.appendChild(li))
+// }
 
-btnSearch.addEventListener('click', searchTask);
+// btnSearch.addEventListener('click', searchTask);
 btnAdd.addEventListener('click', addTask);
 
