@@ -1,9 +1,11 @@
 const toDoArray = [];
 
 const input = document.querySelector('input');
-const form = document.querySelector('form');
+const btnAdd = document.querySelector('button.add');
+const btnRemove = document.querySelectorAll('button.remove');
+const btnSearch = document.querySelector('button.search');
 const ul = document.querySelector('ul');
-const span = document.querySelector('h4 span');
+const span = document.querySelector('p span');
 const listTasks = document.getElementsByClassName('task');
 
 const addTask = (e) => {
@@ -13,26 +15,35 @@ const addTask = (e) => {
     const li = document.createElement('li');
     li.className = 'task'
     ul.appendChild(li);
-    li.innerHTML = `${nameTask}<button class="remove"><i class="fa fa-trash-o"></i></button>`;
+    li.innerHTML = `${nameTask} <button class="remove">Delete</button>`;
     input.value = '';
     toDoArray.push(li);
+    ul.textContent = '';
     toDoArray.forEach((toDoElement, key) =>{
         toDoElement.dataset.key = key;
         ul.appendChild(toDoElement);
     })
+    li.querySelector('button.remove').addEventListener('click', removeTask);
     span.textContent = listTasks.length;
-    li.querySelector('button').addEventListener('click', removeTask);
     console.log(toDoArray);
 }
 
-const removeTask = () => {
-    toDoArray.splice(index)
-
+const removeTask = (e) => {
+    e.target.parentNode.remove();
+    const index = e.target.parentNode.dataset.key;
+    toDoArray.splice(index);
+    span.textContent = listTasks.length;
+    console.log(toDoArray);
 }
 
-const searchTask = () => {
-
+const searchTask = (e) => {
+    const searchText = e.target.value.toLowerCase()
+    let tasks = [...listTasks];
+    tasks = tasks.filter(li => li.textContent.toLowerCase().includes(searchText)) //Metoda includes() ustala czy dana tablica posiada szukany element, zwracając true lub false.
+    ul.textContent = '';
+    tasks.forEach( li => ul.appendChild(li))
 }
 
-form.addEventListener('submit', addTask);
+btnSearch.addEventListener('click', searchTask);
+btnAdd.addEventListener('click', addTask);
 
