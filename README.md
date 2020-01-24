@@ -9,5 +9,6 @@ Popular among all Javascript juniors in the world - Todo App!
 |HTML5 |
 |CSS3 / Sass |
 |Javascript with ES6 standard |
+|RWD |
 |Gulp |
 |Node.js |
