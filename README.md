@@ -2,7 +2,7 @@
 
 Popular among all Javascript juniors in the world - Todo App!
 
-[Watch demo](www.google.com)
+[Watch demo](https://haendzel.github.io/todo-app-js/)
 
 | Technology stack I used in this project |
 |--------------|
