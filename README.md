@@ -1,6 +1,6 @@
 # todo-app-js
 
-Popular among all Javascript juniors in the world - Todo App!
+Todo app with add, delete, completed and search options and minimal design.
 
 ![Todo App](screenshot-todo.png)
 
