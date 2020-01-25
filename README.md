@@ -1,6 +1,6 @@
 # todo-app-js
 
-Todo app with add, delete, completed and search options and minimal design.
+Todo app with add, delete, completed and search options. Let's use it!
 
 ![Todo App](screenshot-todo.png)
 
