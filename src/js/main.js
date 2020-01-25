@@ -5,11 +5,11 @@ const trashArray = [];
 const inputSearch = document.querySelector('input.magnifier');
 const inputTodo = document.querySelector('input.todo')
 const btnAdd = document.querySelector('button.add');
-const btnRemove = document.querySelectorAll('button.remove');
 const ul = document.querySelector('ul');
 const spanToDo = document.querySelector('p span');
 const spanTrash = document.querySelector('p.trash span');
 const listTasks = document.getElementsByClassName('task');
+const spanComplete = document.querySelector('p.completed span');
 
 const addTask = (e) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ const addTask = (e) => {
     const li = document.createElement('li');
     li.className = 'task'
     ul.appendChild(li);
-    li.innerHTML = `<input type="checkbox"> ${nameTask} <button class="remove">Delete</button>`;
+    li.innerHTML = `<input class="checkbox" type="checkbox"> ${nameTask} <button class="remove">Delete</button>`;
     inputTodo.value = ''; //reset inputTodo
     toDoArray.push(li);
     ul.textContent = '';
@@ -28,6 +28,7 @@ const addTask = (e) => {
     })
     li.querySelector('button.remove').addEventListener('click', removeTask);
     spanToDo.textContent = listTasks.length;
+    li.querySelector('input.checkbox').addEventListener('click', completedTask);
     console.log(toDoArray);
 }
 
@@ -42,11 +43,21 @@ const removeTask = (e) => {
 }
 
 const searchTask = (e) => {
-    e.preventDefault()
     const searchText = e.target.value.toLowerCase()
     let tasks = [...listTasks];
-    tasks = tasks.filter(liItem => liItem.textContent.toLowerCase().includes(searchText))
-    tasks.forEach( liItem => ul.appendChild(liItem))
+    tasks = tasks.filter(task => task.textContent.toLowerCase().includes(searchText))
+    ul.textContent = '';
+    tasks.forEach( task => ul.appendChild(task))
+}
+
+const completedTask = (e) => {
+    console.log('work');
+    e.target.parentNode.remove();
+    const index = e.target.parentNode.dataset.key;
+    completeArray.push(index);
+    toDoArray.splice(index);
+    spanToDo.textContent = listTasks.length;
+    spanComplete.textContent = completeArray.length;
 }
 
 inputSearch.addEventListener('input', searchTask);
