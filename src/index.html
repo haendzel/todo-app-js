@@ -14,12 +14,19 @@
     <div class="list">
         <h1>What Todo</h1>
         <p>Number of tasks: <span>0</span></p>
-        <input type="text">
-        <button class="search"><i class="fa fa-search"></i></button>
-        <button class="add"><i class="fa fa-plus"></i></button>
+        <form>
+            <input class="magnifier" type="text">
+            <button class="search"><i class="fa fa-search"></i></button>
+        </form>
+        <form>
+            <input class="todo" type="text">
+            <button class="add"><i class="fa fa-plus"></i></button>
+        </form>
         <div class="tasks">
             <ul></ul>
         </div>
+        <p class="completed">Completed: <span>0</span></p>
+        <p class="trash">Deleted: <span>0</span></p>
     </div>
     <script src="js/main.min.js"></script>
 </body>

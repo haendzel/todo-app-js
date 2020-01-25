@@ -1,22 +1,25 @@
 const toDoArray = [];
+const completeArray = [];
+const trashArray = [];
 
-const input = document.querySelector('input');
+const inputSearch = document.querySelector('input.magnifier');
+const inputTodo = document.querySelector('input.todo')
 const btnAdd = document.querySelector('button.add');
 const btnRemove = document.querySelectorAll('button.remove');
-const btnSearch = document.querySelector('button.search');
 const ul = document.querySelector('ul');
-const span = document.querySelector('p span');
+const spanToDo = document.querySelector('p span');
+const spanTrash = document.querySelector('p.trash span');
 const listTasks = document.getElementsByClassName('task');
 
 const addTask = (e) => {
     e.preventDefault();
-    const nameTask = input.value;
+    const nameTask = inputTodo.value;
     if (nameTask === "") return;
     const li = document.createElement('li');
     li.className = 'task'
     ul.appendChild(li);
-    li.innerHTML = `${nameTask} <button class="remove">Delete</button>`;
-    input.value = '';
+    li.innerHTML = `<input type="checkbox"> ${nameTask} <button class="remove">Delete</button>`;
+    inputTodo.value = ''; //reset inputTodo
     toDoArray.push(li);
     ul.textContent = '';
     toDoArray.forEach((toDoElement, key) =>{
@@ -24,26 +27,28 @@ const addTask = (e) => {
         ul.appendChild(toDoElement);
     })
     li.querySelector('button.remove').addEventListener('click', removeTask);
-    span.textContent = listTasks.length;
+    spanToDo.textContent = listTasks.length;
     console.log(toDoArray);
 }
 
 const removeTask = (e) => {
     e.target.parentNode.remove();
     const index = e.target.parentNode.dataset.key;
+    trashArray.push(index);
     toDoArray.splice(index);
-    span.textContent = listTasks.length;
+    spanToDo.textContent = listTasks.length;
+    spanTrash.textContent = trashArray.length;
     console.log(toDoArray);
 }
 
-// const searchTask = (e) => {
-//     const searchText = e.target.value.toLowerCase()
-//     let tasks = [...listTasks];
-//     tasks = tasks.filter(li => li.textContent.toLowerCase().includes(searchText)) //Metoda includes() ustala czy dana tablica posiada szukany element, zwracając true lub false.
-//     ul.textContent = '';
-//     tasks.forEach( li => ul.appendChild(li))
-// }
+const searchTask = (e) => {
+    e.preventDefault()
+    const searchText = e.target.value.toLowerCase()
+    let tasks = [...listTasks];
+    tasks = tasks.filter(liItem => liItem.textContent.toLowerCase().includes(searchText))
+    tasks.forEach( liItem => ul.appendChild(liItem))
+}
 
-// btnSearch.addEventListener('click', searchTask);
+inputSearch.addEventListener('input', searchTask);
 btnAdd.addEventListener('click', addTask);
 
