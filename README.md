@@ -13,4 +13,4 @@ Todo app with add, delete, completed and search options. Let's use it!
 |Javascript with ES6 standard |
 |RWD |
 |Gulp |
-|Node.js |
+|npm |
